@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
     "build": "next build",
+    "dev": "next dev --turbopack",
+    "lint": "next lint",
+    "prettier": "prettier --write --ignore-unknown .",
+    "prettier:check": "prettier --check --ignore-unknown .",
     "start": "next start",
-    "lint": "next lint"
+    "test": "pnpm lint && pnpm prettier:check"
   },
   "dependencies": {
     "argon2": "^0.41.1",
@@ -21,6 +24,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@next/eslint-plugin-next": "^15.1.7",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^20.17.17",
     "@types/pg": "^8.11.11",
     "@types/react": "^19.0.8",
@@ -28,8 +32,12 @@
     "drizzle-kit": "^0.30.4",
     "eslint": "^9.20.0",
     "eslint-config-next": "15.1.6",
+    "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-react-hooks": "^5.1.0",
     "postcss": "^8.5.2",
+    "prettier": "^3.5.0",
+    "prettier-plugin-packagejson": "^2.5.8",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3"
   }

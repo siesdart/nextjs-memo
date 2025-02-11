@@ -1,6 +1,6 @@
+import './globals.css';
 import type { Metadata } from 'next';
 import { IBM_Plex_Sans_KR } from 'next/font/google';
-import './globals.css';
 
 const ibmPlexSansKr = IBM_Plex_Sans_KR({
   variable: '--font-ibm-flex-sans-kr',

@@ -6,7 +6,7 @@ import { useActionState } from 'react';
 export default function SignUp() {
   const [signUpState, formAction, isPending] = useActionState(
     signUp,
-    undefined
+    undefined,
   );
 
   return (

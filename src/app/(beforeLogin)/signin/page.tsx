@@ -9,7 +9,7 @@ export default function SignIn() {
   const callbackUrl = searchParams.get('callbackUrl') || '/';
   const [signInState, formAction, isPending] = useActionState(
     authenticate,
-    undefined
+    undefined,
   );
 
   return (

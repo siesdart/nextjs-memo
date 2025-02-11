@@ -1,6 +1,5 @@
 'use server';
 
-import argon2 from 'argon2';
 import { signIn } from '@/auth';
 import { countUserByUsername, createUser } from '@/lib/user/data';
 import {
@@ -9,16 +8,17 @@ import {
   SignUpSchema,
   SignUpState,
 } from '@/lib/user/zod';
+import argon2 from 'argon2';
 import { AuthError } from 'next-auth';
 import { redirect } from 'next/navigation';
 
 export async function authenticate(
   prevState: SignInState | undefined,
-  formData: FormData
+  formData: FormData,
 ): Promise<SignInState | undefined> {
   try {
     const validatedFields = SignInSchema.safeParse(
-      Object.fromEntries(formData.entries())
+      Object.fromEntries(formData.entries()),
     );
 
     if (!validatedFields.success) {
@@ -42,11 +42,11 @@ export async function authenticate(
 
 export async function signUp(
   prevState: SignUpState | undefined,
-  formData: FormData
+  formData: FormData,
 ): Promise<SignUpState | undefined> {
   try {
     const validatedFields = SignUpSchema.safeParse(
-      Object.fromEntries(formData.entries())
+      Object.fromEntries(formData.entries()),
     );
 
     if (!validatedFields.success) {

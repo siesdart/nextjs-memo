@@ -3,7 +3,7 @@ import * as schema from '@/schema';
 import { eq } from 'drizzle-orm';
 
 export async function getUserByUsername(
-  username: string
+  username: string,
 ): Promise<schema.User> {
   const [user] = await db
     .select()
@@ -20,7 +20,7 @@ export async function createUser(newUser: Omit<schema.NewUser, 'id'>) {
 export async function countUserByUsername(username: string) {
   const count = await db.$count(
     schema.users,
-    eq(schema.users.username, username)
+    eq(schema.users.username, username),
   );
   return count;
 }

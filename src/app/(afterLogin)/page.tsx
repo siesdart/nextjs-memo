@@ -1,5 +1,6 @@
 import { auth, signOut } from '@/auth';
 import { redirect } from 'next/navigation';
+import { Form } from 'radix-ui';
 
 export default async function Home() {
   const session = await auth();
@@ -9,14 +10,16 @@ export default async function Home() {
   return (
     <div>
       <span>Logged In, {session.user.username}!</span>
-      <form
+      <Form.Root
         action={async () => {
           'use server';
           await signOut({ redirectTo: '/signin' });
         }}
       >
-        <button>로그아웃</button>
-      </form>
+        <Form.Submit asChild>
+          <button>로그아웃</button>
+        </Form.Submit>
+      </Form.Root>
     </div>
   );
 }

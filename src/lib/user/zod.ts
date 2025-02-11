@@ -30,8 +30,8 @@ export const SignUpSchema = z
       .min(8, '비밀번호는 8자리 이상이어야 합니다.')
       .max(32, '비밀번호는 32자리 이하여야 합니다.'),
     confirmPassword: z
-      .string({ required_error: '비밀번호를 입력해주세요.' })
-      .min(1, '비밀번호를 입력해주세요.')
+      .string({ required_error: '비밀번호 확인을 입력해주세요.' })
+      .min(1, '비밀번호 확인을 입력해주세요.')
       .min(8, '비밀번호는 8자리 이상이어야 합니다.')
       .max(32, '비밀번호는 32자리 이하여야 합니다.'),
   })

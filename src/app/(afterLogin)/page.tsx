@@ -17,7 +17,7 @@ export default async function Home() {
         }}
       >
         <Form.Submit asChild>
-          <button>로그아웃</button>
+          <button className="btn">로그아웃</button>
         </Form.Submit>
       </Form.Root>
     </div>

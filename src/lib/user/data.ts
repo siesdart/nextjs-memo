@@ -12,12 +12,14 @@ export async function getUserByUsername(
   return user;
 }
 
-export async function createUser(newUser: Omit<schema.NewUser, 'id'>) {
+export async function createUser(
+  newUser: schema.NewUser,
+): Promise<schema.User> {
   const [user] = await db.insert(schema.users).values(newUser).returning();
   return user;
 }
 
-export async function countUserByUsername(username: string) {
+export async function countUserByUsername(username: string): Promise<number> {
   const count = await db.$count(
     schema.users,
     eq(schema.users.username, username),

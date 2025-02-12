@@ -1,6 +1,6 @@
 'use client';
 
-import Alert from '@/components/alert';
+import Alert from '@/components/Alert';
 import { authenticate } from '@/lib/user/actions';
 import { useSearchParams } from 'next/navigation';
 import { Form } from 'radix-ui';

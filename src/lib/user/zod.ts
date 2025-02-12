@@ -1,3 +1,4 @@
+import { ZodState } from '@/lib/zod';
 import { z } from 'zod';
 
 export const SignInSchema = z.object({
@@ -11,13 +12,7 @@ export const SignInSchema = z.object({
     .max(32, '비밀번호는 32자리 이하여야 합니다.'),
 });
 
-export type SignInState = {
-  errors?: {
-    [P in keyof z.infer<typeof SignInSchema>]?: string[];
-  };
-  message?: string;
-  payload?: FormData;
-};
+export type SignInState = ZodState<typeof SignInSchema>;
 
 export const SignUpSchema = z
   .object({
@@ -40,10 +35,4 @@ export const SignUpSchema = z
     path: ['confirmPassword'],
   });
 
-export type SignUpState = {
-  errors?: {
-    [P in keyof z.infer<typeof SignUpSchema>]?: string[];
-  };
-  message?: string;
-  payload?: FormData;
-};
+export type SignUpState = ZodState<typeof SignUpSchema>;

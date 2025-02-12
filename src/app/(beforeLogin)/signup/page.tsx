@@ -1,6 +1,6 @@
 'use client';
 
-import Alert from '@/components/alert';
+import Alert from '@/components/Alert';
 import { signUp } from '@/lib/user/actions';
 import { Form } from 'radix-ui';
 import { Suspense, useActionState } from 'react';

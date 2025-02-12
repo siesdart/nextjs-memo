@@ -1,5 +1,5 @@
 import { auth, signOut } from '@/auth';
-import NavLink from '@/components/navlink';
+import NavLink from '@/components/Navlink';
 import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { Avatar, Checkbox, Form, Label, NavigationMenu } from 'radix-ui';
@@ -20,15 +20,15 @@ export default async function Navbar() {
         </Link>
       </div>
       <div className="flex-none gap-2">
-        <Form.Root
-          action={async () => {
-            'use server';
-            await signOut({ redirectTo: '/signin' });
-          }}
-        >
-          <NavigationMenu.List className="menu menu-horizontal px-1">
-            {session?.user ? (
-              <>
+        <NavigationMenu.List className="menu menu-horizontal gap-2 px-1">
+          {session?.user ? (
+            <>
+              <Form.Root
+                action={async () => {
+                  'use server';
+                  await signOut({ redirectTo: '/signin' });
+                }}
+              >
                 <NavigationMenu.Item className="dropdown dropdown-end">
                   <NavigationMenu.Trigger asChild>
                     <Avatar.Root
@@ -65,18 +65,18 @@ export default async function Navbar() {
                     </ul>
                   </NavigationMenu.Content>
                 </NavigationMenu.Item>
-              </>
-            ) : (
-              <>
-                {beforeLoginNavLinks.map((navLink) => (
-                  <NavigationMenu.Item key={navLink.href}>
-                    <NavLink href={navLink.href}>{navLink.title}</NavLink>
-                  </NavigationMenu.Item>
-                ))}
-              </>
-            )}
-          </NavigationMenu.List>
-        </Form.Root>
+              </Form.Root>
+            </>
+          ) : (
+            <>
+              {beforeLoginNavLinks.map((navLink) => (
+                <NavigationMenu.Item key={navLink.href}>
+                  <NavLink href={navLink.href}>{navLink.title}</NavLink>
+                </NavigationMenu.Item>
+              ))}
+            </>
+          )}
+        </NavigationMenu.List>
         <Label.Root className="swap swap-rotate">
           <Checkbox.Root asChild>
             <input type="checkbox" className="theme-controller" value="dark" />

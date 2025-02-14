@@ -1,5 +1,5 @@
 import './globals.css';
-import Navbar from '@/components/navbar';
+import Navbar from '@/components/Navbar';
 import type { Metadata } from 'next';
 import { IBM_Plex_Sans_KR } from 'next/font/google';
 

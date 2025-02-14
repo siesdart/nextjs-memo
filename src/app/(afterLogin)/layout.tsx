@@ -3,5 +3,5 @@ export interface AfterLoginLayoutProps {
 }
 
 export default function AfterLoginLayout({ children }: AfterLoginLayoutProps) {
-  return <main className="flex-1">{children}</main>;
+  return <main className="flex-1 p-6">{children}</main>;
 }

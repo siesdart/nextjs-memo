@@ -1,5 +1,6 @@
 import { auth, signOut } from '@/auth';
-import NavLink from '@/components/Navlink';
+import NavLink from '@/components/NavLink';
+import CreateDialog from '@/components/memo/CreateDialog';
 import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { Avatar, Checkbox, Form, Label, NavigationMenu } from 'radix-ui';
@@ -23,13 +24,18 @@ export default async function Navbar() {
         <NavigationMenu.List className="menu menu-horizontal gap-2 px-1">
           {session?.user ? (
             <>
+              <NavigationMenu.Item>
+                <NavigationMenu.Link asChild>
+                  <CreateDialog />
+                </NavigationMenu.Link>
+              </NavigationMenu.Item>
               <Form.Root
                 action={async () => {
                   'use server';
                   await signOut({ redirectTo: '/signin' });
                 }}
               >
-                <NavigationMenu.Item className="dropdown dropdown-end">
+                <NavigationMenu.Item className="dropdown dropdown-end ml-3">
                   <NavigationMenu.Trigger asChild>
                     <Avatar.Root
                       tabIndex={0}

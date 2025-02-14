@@ -92,7 +92,7 @@ function SignInForm() {
           )}
         </button>
       </Form.Submit>
-      <Alert message={signInState?.message} invisible={!signInState?.message} />
+      {signInState?.message && <Alert message={signInState.message} />}
     </Form.Root>
   );
 }

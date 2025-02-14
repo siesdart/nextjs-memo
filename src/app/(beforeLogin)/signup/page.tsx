@@ -121,7 +121,7 @@ function SignUpForm() {
           )}
         </button>
       </Form.Submit>
-      <Alert message={signUpState?.message} invisible={!signUpState?.message} />
+      {signUpState?.message && <Alert message={signUpState.message} />}
     </Form.Root>
   );
 }

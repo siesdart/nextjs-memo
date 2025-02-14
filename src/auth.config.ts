@@ -19,12 +19,16 @@ export const authConfig = {
     },
     jwt({ token, user }) {
       if (user) {
+        token.id = user.id;
         token.username = user.username;
+        token.createdAt = user.createdAt;
       }
       return token;
     },
     session({ session, token }) {
-      session.user.username = token.username as string | undefined;
+      session.user.id = token.id as string;
+      session.user.username = token.username as string;
+      session.user.createdAt = token.createdAt as Date;
       return session;
     },
   },

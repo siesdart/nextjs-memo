@@ -16,18 +16,18 @@ export async function authenticate(
   prevState: SignInState | undefined,
   formData: FormData,
 ): Promise<SignInState | undefined> {
+  const validatedFields = SignInSchema.safeParse(
+    Object.fromEntries(formData.entries()),
+  );
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      payload: formData,
+    };
+  }
+
   try {
-    const validatedFields = SignInSchema.safeParse(
-      Object.fromEntries(formData.entries()),
-    );
-
-    if (!validatedFields.success) {
-      return {
-        errors: validatedFields.error.flatten().fieldErrors,
-        payload: formData,
-      };
-    }
-
     await signIn('credentials', formData);
   } catch (error) {
     if (error instanceof AuthError) {
@@ -44,32 +44,37 @@ export async function signUp(
   prevState: SignUpState | undefined,
   formData: FormData,
 ): Promise<SignUpState | undefined> {
-  try {
-    const validatedFields = SignUpSchema.safeParse(
-      Object.fromEntries(formData.entries()),
-    );
+  const validatedFields = SignUpSchema.safeParse(
+    Object.fromEntries(formData.entries()),
+  );
 
-    if (!validatedFields.success) {
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      payload: formData,
+    };
+  }
+
+  const { username, password } = validatedFields.data;
+
+  try {
+    const userCount = await countUserByUsername(username);
+    if (userCount > 0) {
       return {
-        errors: validatedFields.error.flatten().fieldErrors,
+        errors: { username: ['이미 존재하는 사용자입니다.'] },
         payload: formData,
       };
     }
 
-    const { username, password } = validatedFields.data;
-
-    const userCount = await countUserByUsername(username);
-    if (userCount > 0) {
-      return { message: '이미 존재하는 사용자입니다.', payload: formData };
-    }
-
     const hashedPassword = await argon2.hash(password);
 
-    const user = await createUser({ username, password: hashedPassword });
-    if (!user) throw new Error();
-
-    redirect('/signin');
-  } catch (error) {
-    throw error;
+    await createUser({ username, password: hashedPassword });
+  } catch {
+    return {
+      message: '데이터베이스 오류',
+      payload: formData,
+    };
   }
+
+  redirect('/signin');
 }

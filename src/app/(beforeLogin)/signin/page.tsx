@@ -15,7 +15,7 @@ function SignInForm() {
   );
 
   return (
-    <Form.Root className="flex w-80 flex-col" action={formAction}>
+    <Form.Root className="flex w-60 flex-col md:w-80" action={formAction}>
       <Form.Field
         name="username"
         serverInvalid={!!signInState?.errors?.username}
@@ -35,7 +35,10 @@ function SignInForm() {
               </Form.Message>
             ))}
         </div>
-        <Form.Control className="input input-bordered w-full" asChild>
+        <Form.Control
+          className="input input-sm input-bordered w-full md:input-md"
+          asChild
+        >
           <input
             type="text"
             defaultValue={signInState?.payload?.get('username')?.toString()}
@@ -68,7 +71,10 @@ function SignInForm() {
               </Form.Message>
             ))}
         </div>
-        <Form.Control className="input input-bordered w-full" asChild>
+        <Form.Control
+          className="input input-sm input-bordered w-full md:input-md"
+          asChild
+        >
           <input
             type="password"
             defaultValue={signInState?.payload?.get('password')?.toString()}
@@ -100,7 +106,9 @@ function SignInForm() {
 export default function SignIn() {
   return (
     <>
-      <h1 className="mb-2 text-3xl font-bold">돌아와주셔서 감사합니다 :)</h1>
+      <h1 className="mb-2 text-2xl font-bold md:text-3xl">
+        돌아와주셔서 감사합니다 :)
+      </h1>
       <Suspense>
         <SignInForm />
       </Suspense>

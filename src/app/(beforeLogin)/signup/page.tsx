@@ -12,7 +12,7 @@ function SignUpForm() {
   );
 
   return (
-    <Form.Root className="flex w-80 flex-col" action={formAction}>
+    <Form.Root className="flex w-60 flex-col md:w-80" action={formAction}>
       <Form.Field
         name="username"
         serverInvalid={!!signUpState?.errors?.username}
@@ -32,7 +32,10 @@ function SignUpForm() {
               </Form.Message>
             ))}
         </div>
-        <Form.Control className="input input-bordered w-full" asChild>
+        <Form.Control
+          className="input input-sm input-bordered w-full md:input-md"
+          asChild
+        >
           <input
             type="text"
             defaultValue={signUpState?.payload?.get('username')?.toString()}
@@ -65,7 +68,10 @@ function SignUpForm() {
               </Form.Message>
             ))}
         </div>
-        <Form.Control className="input input-bordered w-full" asChild>
+        <Form.Control
+          className="input input-sm input-bordered w-full md:input-md"
+          asChild
+        >
           <input
             type="password"
             defaultValue={signUpState?.payload?.get('password')?.toString()}
@@ -100,7 +106,10 @@ function SignUpForm() {
               </Form.Message>
             ))}
         </div>
-        <Form.Control className="input input-bordered w-full" asChild>
+        <Form.Control
+          className="input input-sm input-bordered w-full md:input-md"
+          asChild
+        >
           <input
             type="password"
             defaultValue={signUpState?.payload
@@ -129,7 +138,9 @@ function SignUpForm() {
 export default function SignUp() {
   return (
     <>
-      <h1 className="mb-2 text-3xl font-bold">어서오세요, 환영합니다!</h1>
+      <h1 className="mb-2 text-2xl font-bold md:text-3xl">
+        어서오세요, 환영합니다!
+      </h1>
       <Suspense>
         <SignUpForm />
       </Suspense>

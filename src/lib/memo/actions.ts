@@ -1,8 +1,18 @@
 'use server';
 
 import { auth } from '@/auth';
-import { countMemoByNameAndUserId, createMemo } from '@/lib/memo/data';
-import { CreateMemoSchema, CreateMemoState } from '@/lib/memo/zod';
+import {
+  countMemoByNameAndUserId,
+  createMemo,
+  getMemoById,
+  updateMemo,
+} from '@/lib/memo/data';
+import {
+  CreateMemoSchema,
+  CreateMemoState,
+  UpdateMemoContentSchema,
+  UpdateMemoContentState,
+} from '@/lib/memo/zod';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
@@ -48,5 +58,52 @@ export async function addMemo(
   }
 
   revalidatePath('/');
+  redirect('/');
+}
+
+export async function updateMemoContent(
+  prevState: UpdateMemoContentState | undefined,
+  formData: FormData,
+): Promise<UpdateMemoContentState | undefined> {
+  const validatedFields = UpdateMemoContentSchema.safeParse(
+    Object.fromEntries(formData.entries()),
+  );
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      payload: formData,
+    };
+  }
+
+  const session = await auth();
+  if (!session?.user?.id) redirect('/signin');
+
+  const { id, content } = validatedFields.data;
+
+  try {
+    const memo = await getMemoById(id);
+    if (!memo) {
+      return {
+        errors: { id: ['존재하지 않는 파일입니다.'] },
+        payload: formData,
+      };
+    }
+
+    if (memo.userId !== session.user.id) {
+      return {
+        errors: { id: ['파일의 소유자가 아닙니다.'] },
+        payload: formData,
+      };
+    }
+
+    await updateMemo(id, { content });
+  } catch {
+    return {
+      message: '데이터베이스 오류',
+      payload: formData,
+    };
+  }
+
   redirect('/');
 }

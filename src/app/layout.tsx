@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import ThemeController from '@/components/ThemeController';
 import type { Metadata } from 'next';
 import { IBM_Plex_Sans_KR } from 'next/font/google';
+import { Bounce, ToastContainer } from 'react-toastify';
 
 const ibmPlexSansKr = IBM_Plex_Sans_KR({
   variable: '--font-ibm-flex-sans-kr',
@@ -35,6 +36,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </aside>
         </footer>
         <ThemeController />
+        <ToastContainer
+          position="bottom-right"
+          hideProgressBar
+          newestOnTop
+          draggable={false}
+          theme="colored"
+          transition={Bounce}
+        />
       </body>
     </html>
   );

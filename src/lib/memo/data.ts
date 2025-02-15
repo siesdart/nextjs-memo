@@ -11,6 +11,14 @@ export async function getMemosByUserId(userId: string): Promise<schema.Memo[]> {
   return memos;
 }
 
+export async function getMemoById(id: string): Promise<schema.Memo> {
+  const [memo] = await db
+    .select()
+    .from(schema.memos)
+    .where(eq(schema.memos.id, id));
+  return memo;
+}
+
 export async function createMemo(
   newMemo: schema.NewMemo,
 ): Promise<schema.Memo> {

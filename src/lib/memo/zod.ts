@@ -8,3 +8,12 @@ export const CreateMemoSchema = z.object({
 });
 
 export type CreateMemoState = ZodState<typeof CreateMemoSchema>;
+
+export const UpdateMemoContentSchema = z.object({
+  id: z
+    .string({ required_error: '파일을 지정해주세요.' })
+    .uuid('올바른 파일을 지정해주세요.'),
+  content: z.string(),
+});
+
+export type UpdateMemoContentState = ZodState<typeof UpdateMemoContentSchema>;

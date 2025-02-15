@@ -1,5 +1,5 @@
 import { Memo } from '@/schema';
-import { DocumentTextIcon } from '@heroicons/react/24/solid';
+import { FileText } from 'lucide-react';
 import Link from 'next/link';
 
 export interface MemoItemProps {
@@ -12,7 +12,7 @@ export default function MemoItem({ memo }: MemoItemProps) {
       className="btn btn-ghost flex size-32 flex-col items-center md:size-48"
       href={`/${memo.id}`}
     >
-      <DocumentTextIcon className="size-16 md:size-24" />
+      <FileText className="size-16 md:size-24" />
       <h2>{memo.name}</h2>
       <span className="text-xs font-light">
         {memo.createdAt.toLocaleString()}

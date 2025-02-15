@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@heroicons/react':
-        specifier: ^2.2.0
-        version: 2.2.0(react@19.0.0)
       argon2:
         specifier: ^0.41.1
         version: 0.41.1
@@ -20,6 +17,9 @@ importers:
       drizzle-orm:
         specifier: ^0.39.3
         version: 0.39.3(@types/pg@8.11.11)(pg@8.13.3)
+      lucide-react:
+        specifier: ^0.475.0
+        version: 0.475.0(react@19.0.0)
       next:
         specifier: 15.1.7
         version: 15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -492,11 +492,6 @@ packages:
 
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
-
-  '@heroicons/react@2.2.0':
-    resolution: {integrity: sha512-LMcepvRaS9LYHJGsF0zzmgKCUim/X3N/DQKc4jepAXJ7l8QxJ1PmxJzqplF2Z3FE4PqBAIGyJAQ/w4B5dsqbtQ==}
-    peerDependencies:
-      react: '>= 16 || ^19.0.0-rc'
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2424,6 +2419,11 @@ packages:
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
+  lucide-react@0.475.0:
+    resolution: {integrity: sha512-NJzvVu1HwFVeZ+Gwq2q00KygM1aBhy/ZrhY9FsAgJtpB+E4R7uxRk9M2iKvHa6/vNxZydIB59htha4c2vvwvVg==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
@@ -3526,10 +3526,6 @@ snapshots:
       react-dom: 19.0.0(react@19.0.0)
 
   '@floating-ui/utils@0.2.9': {}
-
-  '@heroicons/react@2.2.0(react@19.0.0)':
-    dependencies:
-      react: 19.0.0
 
   '@humanfs/core@0.19.1': {}
 
@@ -5590,6 +5586,10 @@ snapshots:
       js-tokens: 4.0.0
 
   lru-cache@10.4.3: {}
+
+  lucide-react@0.475.0(react@19.0.0):
+    dependencies:
+      react: 19.0.0
 
   math-intrinsics@1.1.0: {}
 

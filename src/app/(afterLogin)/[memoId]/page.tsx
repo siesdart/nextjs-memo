@@ -1,7 +1,7 @@
 import { auth } from '@/auth';
 import UpdateContentForm from '@/components/memo/UpdateContentForm';
 import { getMemoById } from '@/lib/memo/data';
-import { DocumentTextIcon, FolderIcon } from '@heroicons/react/24/outline';
+import { FileText, Folder } from 'lucide-react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
@@ -28,13 +28,12 @@ export default async function MemoPage({ params }: MemoPageProps) {
                 className="inline-flex cursor-pointer items-center gap-2 hover:underline"
                 href="/"
               >
-                <FolderIcon className="size-5 stroke-current" /> My Notes
+                <Folder className="size-5 stroke-current" /> My Notes
               </Link>
             </li>
             <li>
               <span className="inline-flex items-center gap-2">
-                <DocumentTextIcon className="size-5 stroke-current" />{' '}
-                {memo.name}
+                <FileText className="size-5 stroke-current" /> {memo.name}
               </span>
             </li>
           </ul>

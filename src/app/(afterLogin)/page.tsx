@@ -2,7 +2,7 @@ import { auth } from '@/auth';
 import MemoItem from '@/components/memo/MemoItem';
 import MemoItemsSkeleton from '@/components/memo/MemoItemsSkeleton';
 import { getMemosByUserId } from '@/lib/memo/data';
-import { FolderIcon } from '@heroicons/react/24/outline';
+import { Folder } from 'lucide-react';
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
 
@@ -28,7 +28,7 @@ export default async function HomePage() {
         <ul>
           <li>
             <span className="inline-flex items-center gap-2">
-              <FolderIcon className="size-5 stroke-current" /> My Notes
+              <Folder className="size-5 stroke-current" /> My Notes
             </span>
           </li>
         </ul>

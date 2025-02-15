@@ -1,5 +1,5 @@
-import { XCircleIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
+import { CircleX } from 'lucide-react';
 
 export interface AlertProps
   extends Omit<
@@ -19,7 +19,7 @@ export default function Alert({ message, className, ...props }: AlertProps) {
       className={clsx('alert alert-error', className)}
       {...props}
     >
-      <XCircleIcon className="size-6 text-error-content" />
+      <CircleX className="size-6 text-error-content" />
       <span>{message}</span>
     </div>
   );

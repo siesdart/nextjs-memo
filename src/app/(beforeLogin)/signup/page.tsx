@@ -1,6 +1,7 @@
 'use client';
 
 import Alert from '@/components/Alert';
+import Submit from '@/components/Submit';
 import { signUp } from '@/lib/user/actions';
 import { Form } from 'radix-ui';
 import { Suspense, useActionState } from 'react';
@@ -121,21 +122,15 @@ function SignUpForm() {
           />
         </Form.Control>
       </Form.Field>
-      <Form.Submit asChild>
-        <button className="btn btn-primary my-4" disabled={isPending}>
-          {isPending ? (
-            <span className="loading loading-spinner"></span>
-          ) : (
-            '회원가입'
-          )}
-        </button>
+      <Form.Submit className="my-4" asChild>
+        <Submit isPending={isPending}>회원가입</Submit>
       </Form.Submit>
       {signUpState?.message && <Alert message={signUpState.message} />}
     </Form.Root>
   );
 }
 
-export default function SignUp() {
+export default function SignUpPage() {
   return (
     <>
       <h1 className="mb-2 text-2xl font-bold md:text-3xl">

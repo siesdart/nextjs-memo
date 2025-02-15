@@ -8,6 +8,7 @@ import { NavigationMenu } from 'radix-ui';
 export default function NavLink({
   children,
   href,
+  className,
   ...props
 }: Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps> &
   LinkProps & {
@@ -18,7 +19,7 @@ export default function NavLink({
 
   return (
     <NavigationMenu.Link
-      className={clsx({ 'font-bold': isActive })}
+      className={clsx({ 'font-bold': isActive }, className)}
       asChild
       active={isActive}
     >

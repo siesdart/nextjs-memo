@@ -1,6 +1,7 @@
 'use client';
 
 import Alert from '@/components/Alert';
+import Submit from '@/components/Submit';
 import { authenticate } from '@/lib/user/actions';
 import { useSearchParams } from 'next/navigation';
 import { Form } from 'radix-ui';
@@ -89,21 +90,15 @@ function SignInForm() {
           <input type="hidden" value={callbackUrl} />
         </Form.Control>
       </Form.Field>
-      <Form.Submit asChild>
-        <button className="btn btn-primary my-4" disabled={isPending}>
-          {isPending ? (
-            <span className="loading loading-spinner"></span>
-          ) : (
-            '로그인'
-          )}
-        </button>
+      <Form.Submit className="my-4" asChild>
+        <Submit isPending={isPending}>로그인</Submit>
       </Form.Submit>
       {signInState?.message && <Alert message={signInState.message} />}
     </Form.Root>
   );
 }
 
-export default function SignIn() {
+export default function SignInPage() {
   return (
     <>
       <h1 className="mb-2 text-2xl font-bold md:text-3xl">

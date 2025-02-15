@@ -18,7 +18,7 @@ export default function ThemeController() {
   }, [isDark]);
 
   return (
-    <Label.Root className="swap swap-rotate fixed bottom-0 right-0 m-4 rounded-full p-2 shadow">
+    <Label.Root className="swap swap-rotate fixed bottom-0 right-0 m-4 rounded-full bg-base-100 p-2 shadow">
       <Checkbox.Root asChild>
         <input
           type="checkbox"

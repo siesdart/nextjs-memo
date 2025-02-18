@@ -2,7 +2,7 @@ import { auth } from '@/auth';
 import DeleteDialog from '@/components/memo/DeleteDialog';
 import UpdateContentForm from '@/components/memo/UpdateContentForm';
 import { getMemoById } from '@/lib/memo/data';
-import { FileText, Folder } from 'lucide-react';
+import { Download, FileText, Folder } from 'lucide-react';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
@@ -43,6 +43,12 @@ export default async function MemoPage({ params }: MemoPageProps) {
           <span className="text-xs font-light md:text-sm">
             {memo.updatedAt.toLocaleString()} 수정됨
           </span>
+          <Link
+            className="btn btn-square btn-ghost btn-sm"
+            href={`/${memo.id}/download`}
+          >
+            <Download className="size-4" />
+          </Link>
           <DeleteDialog memo={memo} />
         </div>
       </div>

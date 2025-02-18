@@ -1,4 +1,5 @@
 import { auth } from '@/auth';
+import DeleteDialog from '@/components/memo/DeleteDialog';
 import UpdateContentForm from '@/components/memo/UpdateContentForm';
 import { getMemoById } from '@/lib/memo/data';
 import { FileText, Folder } from 'lucide-react';
@@ -20,8 +21,8 @@ export default async function MemoPage({ params }: MemoPageProps) {
 
   return (
     <>
-      <div className="mb-1 flex items-center">
-        <div className="breadcrumbs flex-1">
+      <div className="mb-2 flex justify-between gap-3">
+        <div className="breadcrumbs flex-none">
           <ul>
             <li>
               <Link
@@ -39,7 +40,7 @@ export default async function MemoPage({ params }: MemoPageProps) {
           </ul>
         </div>
         <div>
-          <span className="text-sm font-light">
+          <span className="text-xs font-light md:text-sm">
             {memo.updatedAt.toLocaleString()} 수정됨
           </span>
         </div>

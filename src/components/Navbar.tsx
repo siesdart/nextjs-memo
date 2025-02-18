@@ -28,7 +28,7 @@ export default async function Navbar() {
               </NavigationMenu.Link>
             </NavigationMenu.Item>
             <Form.Root
-              className="ml-2 md:ml-3"
+              className="mx-2"
               action={async () => {
                 'use server';
                 await signOut({ redirectTo: '/signin' });

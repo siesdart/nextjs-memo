@@ -3,6 +3,7 @@
 import Submit from '@/components/Submit';
 import { updateMemoContent } from '@/lib/memo/actions';
 import { Memo } from '@/schema';
+import { Save } from 'lucide-react';
 import { Form } from 'radix-ui';
 import { useActionState, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -56,7 +57,7 @@ export default function UpdateContentForm({ memo }: UpdateContentFormProps) {
         </Form.Control>
       </Form.Field>
       <Form.Field name="content" className="flex flex-1 flex-col">
-        <Form.Control className="flex-1 resize-none" asChild>
+        <Form.Control className="flex-1 resize-none bg-base-100" asChild>
           <textarea
             defaultValue={
               updateMemoContentState?.payload?.get('content')?.toString() ||
@@ -72,7 +73,9 @@ export default function UpdateContentForm({ memo }: UpdateContentFormProps) {
         </Form.Control>
       </Form.Field>
       <Form.Submit className="my-4" asChild>
-        <Submit isPending={isPending}>저장</Submit>
+        <Submit isPending={isPending}>
+          <Save />
+        </Submit>
       </Form.Submit>
     </Form.Root>
   );

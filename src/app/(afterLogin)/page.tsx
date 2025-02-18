@@ -24,7 +24,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <div className="breadcrumbs mb-1">
+      <div className="breadcrumbs mb-2">
         <ul>
           <li>
             <span className="inline-flex items-center gap-2">

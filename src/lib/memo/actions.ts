@@ -4,12 +4,15 @@ import { auth } from '@/auth';
 import {
   countMemoByNameAndUserId,
   createMemo,
+  deleteMemo,
   getMemoById,
   updateMemo,
 } from '@/lib/memo/data';
 import {
   CreateMemoSchema,
   CreateMemoState,
+  DeleteMemoSchema,
+  DeleteMemoState,
   UpdateMemoContentSchema,
   UpdateMemoContentState,
 } from '@/lib/memo/zod';
@@ -105,5 +108,53 @@ export async function updateMemoContent(
     };
   }
 
+  redirect('/');
+}
+
+export async function removeMemo(
+  prevState: DeleteMemoState | undefined,
+  formData: FormData,
+): Promise<DeleteMemoState | undefined> {
+  const validatedFields = DeleteMemoSchema.safeParse(
+    Object.fromEntries(formData.entries()),
+  );
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      payload: formData,
+    };
+  }
+
+  const session = await auth();
+  if (!session?.user?.id) redirect('/signin');
+
+  const { id } = validatedFields.data;
+
+  try {
+    const memo = await getMemoById(id);
+    if (!memo) {
+      return {
+        errors: { id: ['존재하지 않는 파일입니다.'] },
+        payload: formData,
+      };
+    }
+
+    if (memo.userId !== session.user.id) {
+      return {
+        errors: { id: ['파일의 소유자가 아닙니다.'] },
+        payload: formData,
+      };
+    }
+
+    await deleteMemo(id);
+  } catch {
+    return {
+      message: '데이터베이스 오류',
+      payload: formData,
+    };
+  }
+
+  revalidatePath('/');
   redirect('/');
 }

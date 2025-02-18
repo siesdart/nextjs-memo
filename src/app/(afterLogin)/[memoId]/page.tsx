@@ -39,10 +39,11 @@ export default async function MemoPage({ params }: MemoPageProps) {
             </li>
           </ul>
         </div>
-        <div>
+        <div className="flex items-center gap-2">
           <span className="text-xs font-light md:text-sm">
             {memo.updatedAt.toLocaleString()} 수정됨
           </span>
+          <DeleteDialog memo={memo} />
         </div>
       </div>
       <Suspense>

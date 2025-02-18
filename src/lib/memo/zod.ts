@@ -17,3 +17,11 @@ export const UpdateMemoContentSchema = z.object({
 });
 
 export type UpdateMemoContentState = ZodState<typeof UpdateMemoContentSchema>;
+
+export const DeleteMemoSchema = z.object({
+  id: z
+    .string({ required_error: '파일을 지정해주세요.' })
+    .uuid('올바른 파일을 지정해주세요.'),
+});
+
+export type DeleteMemoState = ZodState<typeof DeleteMemoSchema>;
